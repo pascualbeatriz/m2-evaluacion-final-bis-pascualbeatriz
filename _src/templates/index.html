@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<title>Adalab Web Starter Kit</title>
-  <link rel="icon" href="favicon.png"/>
-	<link rel="stylesheet" href="assets/css/main.css">
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" script-src='unsafe-inline';>
+    <title>Ejercicio Beatriz Pascual Sanchez</title>
+    <link rel="icon" href="favicon.png"/>
+    <link rel="stylesheet" href="assets/css/main.css">
+  </head>
 <body>
 
-  <form action="/select" method="post">
-      <label for="choose__option">
+  <form name="form__inputs">
+      <label for="choose__option1">
         <input
           class="gap__number"
-          id="choose__option"
+          id="choose__option1"
           type="radio"
-          value=""
+          value="4"
           name="choose__option"
         />
         4
@@ -25,8 +27,8 @@
           class="gap__number"
           id="choose__option2"
           type="radio"
-          value=""
-          name="choose__option2"
+          value="6"
+          name="choose__option"
         />
         6
       </label>
@@ -36,8 +38,8 @@
           class="gap__number"
           id="choose__option3"
           type="radio"
-          value=""
-          name="choose__option3"
+          value="8"
+          name="choose__option"
         />
         8
       </label>
@@ -46,12 +48,12 @@
 
   </form>
 
-<ul class="card__list"></ul>
+  <ul class="card__list"></ul>
 
 
 
 
   <script src="assets/js/main.js"></script>
-  </div>
+
 </body>
 </html>
