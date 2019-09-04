@@ -11,15 +11,12 @@ const cardList = document.querySelector('.card__list');
 
 const urlCards = 'https://via.placeholder.com/160x195/30d9c4/ffffff/?text=ADALAB';
 
-
-let acc = 0;
 // Aquí recojo el value del input y guardo los datos en el local storage;
-function getNumber (event) {
+function getNumber () {
 
   for (const itemGap of gap) {
     const value = itemGap.value;
     if (itemGap.checked === true){
-      console.log(itemGap);
       localStorage.setItem('gapValue', value);
     }
   }
@@ -27,22 +24,30 @@ function getNumber (event) {
 
 function selectOption () {
 // recogo el estado del form y ese dato me lleva a la API
-  const getGapNumber = localStorage.getItem('gapValue');
-  const urlCardsShow = `https://raw.githubusercontent.com/Adalab/cards‒data/master/${getGapNumber}.json`;
+  getNumber();
+  // pongo el 4  para que sea por defecto 4 y no esté vacio y la url siempre tenga un número
+  const getGapNumber = localStorage.getItem('gapValue') || 4;
+  const urlCardsShow =`https://raw.githubusercontent.com/Adalab/cards-data/master/${getGapNumber}.json`;
+  console.log(urlCardsShow);
 
   fetch(urlCardsShow)
     .then (response => response.json())
     .then (data => {
       for(let item of data) {
-        // item = `<li>${item.image}${item.name}${item.pair}</li>`;
-        // cardList.innerHTML += item;
+        console.log(item);
+
+        const content = `<li data-index${item.pair}>
+        <img src="${item.image}" alt="${item.name}">
+        <p>${item.name} </p>
+        </li>`;
+        cardList.innerHTML += content;
       }
-    })
+    });
 
 }
 
 
-btnComenzar.addEventListener('click', getNumber);
+btnComenzar.addEventListener('click', selectOption);
 
 
 
