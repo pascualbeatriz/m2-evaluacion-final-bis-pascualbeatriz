@@ -12,12 +12,16 @@ const cardList = document.querySelector('.card__list');
 const urlCards = 'https://via.placeholder.com/160x195/30d9c4/ffffff/?text=ADALAB';
 
 
-
+let acc = 0;
 // Aquí recojo el value del input y guardo los datos en el local storage;
 function getNumber (event) {
+
   for (const itemGap of gap) {
-    const itemGap = event.currentTarget.value;
-    localStorage.setItem('gapValue', itemGap);
+    const value = itemGap.value;
+    if (itemGap.checked === true){
+      console.log(itemGap);
+      localStorage.setItem('gapValue', value);
+    }
   }
 }
 
