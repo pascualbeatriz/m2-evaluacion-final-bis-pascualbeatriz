@@ -8,6 +8,7 @@ const card6 = document.getElementById('#choose__option2');
 const card8 = document.getElementById('#choose__option3');
 const btnComenzar = document.querySelector('.choose--number');
 const cardList = document.querySelector('.card__list');
+let cardNotShow=document.querySelector('.image-back');
 
 const urlCards = 'https://via.placeholder.com/160x195/30d9c4/ffffff/?text=ADALAB';
 
@@ -33,29 +34,32 @@ function selectOption () {
   fetch(urlCardsShow)
     .then (response => response.json())
     .then (data => {
-      for(let item of data) {
-        console.log(item);
 
-        const content = `<li data-index${item.pair}>
-        <img src="${item.image}" alt="${item.name}">
+      for(let item of data) {
+
+        let content = `<li class="card" data-index${item.pair}>
+        <img class="image image-front hidden" src="${item.image}" alt="${item.name}">
+        <img class="image image-back" src="${urlCards}" alt="adalab">
         <p>${item.name} </p>
         </li>`;
         cardList.innerHTML += content;
-      }
-    });
 
+        // Aquí  creo una variable donde guardo todos los elementos que contienen la clase img, los recorro con un for y le digo que cuando haga click sobre item me vaya a la función showImage
+        const card = document.querySelectorAll('.card');
+        for (const item of card) {
+          item.addEventListener('click', showImage);
+
+        }
+      }
+
+    });
 }
 
+function showImage (event){
+  const card = event.currentTarget;
+  console.log(card);
+  card.querySelector('.image-front').classList.toggle('hidden');
+  card.querySelector('.image-back').classList.toggle('hidden');
+}
 
 btnComenzar.addEventListener('click', selectOption);
-
-
-
-// function selectGapNumber(){
-//     let i;
-//     for (i=0;i<document.form__inputs.choose__option.length;i++){
-//       if (document.form__inputs.choose__option[i].checked)
-//         break;
-//     }
-//     document.item = document.form__inputs.choose__option[i].value;
-//   }
