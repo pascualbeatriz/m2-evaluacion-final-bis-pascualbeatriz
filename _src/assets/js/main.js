@@ -34,24 +34,24 @@ function selectOption () {
   fetch(urlCardsShow)
     .then (response => response.json())
     .then (data => {
-
+      let content ='';
+      cardList.innerHTML='';
       for(let item of data) {
 
-        let content = `<li class="card" data-index${item.pair}>
+        content += `<li class="card" data-index${item.pair}>
         <img class="image image-front hidden" src="${item.image}" alt="${item.name}">
         <img class="image image-back" src="${urlCards}" alt="adalab">
         <p>${item.name} </p>
         </li>`;
-        cardList.innerHTML += content;
-
-        // Aquí  creo una variable donde guardo todos los elementos que contienen la clase img, los recorro con un for y le digo que cuando haga click sobre item me vaya a la función showImage
-        const card = document.querySelectorAll('.card');
-        for (const item of card) {
-          item.addEventListener('click', showImage);
-
-        }
       }
+      cardList.innerHTML += content;
 
+      // Aquí  creo una variable donde guardo todos los elementos que contienen la clase img, los recorro con un for y le digo que cuando haga click sobre item me vaya a la función showImage
+      const card = document.querySelectorAll('.card');
+      for (const item of card) {
+        item.addEventListener('click', showImage);
+
+      }
     });
 }
 
